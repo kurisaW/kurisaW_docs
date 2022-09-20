@@ -1,3 +1,4 @@
+[default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=kurisaW&repo=github-readme-stats&cache_seconds=86400&theme=default
 # yifang_docs
 
 在这里我分享了一些学习过程中的笔记及实验教程，欢迎学习交流！
