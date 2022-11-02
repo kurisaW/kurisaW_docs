@@ -13,6 +13,7 @@
 * -->[桥接网络无法联网、开发板挂载根文件系统问题解决](https://github.com/kurisaW/Linux-system-program/blob/main/6.%E6%A1%A5%E6%8E%A5%E7%BD%91%E7%BB%9C%E6%97%A0%E6%B3%95%E8%81%94%E7%BD%91%E3%80%81%E5%BC%80%E5%8F%91%E6%9D%BF%E6%8C%82%E8%BD%BD%E6%A0%B9%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3.md)
 * -->[ubuntu彻底删除通过apt方式安装的程序](https://github.com/kurisaW/Linux-system-program/blob/main/7.ubuntu%E5%BD%BB%E5%BA%95%E5%88%A0%E9%99%A4%E9%80%9A%E8%BF%87apt%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85%E7%9A%84%E7%A8%8B%E5%BA%8F.md)
 * -->[ubuntu桌面恢复](https://github.com/kurisaW/Linux-system-program/blob/main/8.ubuntu%E6%A1%8C%E9%9D%A2%E6%81%A2%E5%A4%8D%EF%BC%8820.04%EF%BC%89.md)
+* -->[linux常见问题](https://github.com/kurisaW/Linux-system-program/blob/main/9.linux%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98.md)
 
 ![image](https://user-images.githubusercontent.com/98592772/191179367-94250c77-2244-42b0-a89e-7cfe8948f8cd.png)
 
