@@ -40,3 +40,4 @@
 
 * --->[Linux 系列汇总.pdf](https://github.com/kurisaW/yifang_docs/blob/main/Documents/Linux%20%E7%B3%BB%E5%88%97%E6%B1%87%E6%80%BB.pdf)
 * --->[GCC 中文手册.pdf](https://github.com/kurisaW/yifang_docs/blob/main/Documents/GCC.%E4%B8%AD%E6%96%87%E6%89%8B%E5%86%8C.pdf)
+* --->[Google C++ Style Guide中文.pdf]()
