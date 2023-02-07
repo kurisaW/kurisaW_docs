@@ -33,3 +33,10 @@
 * -->[RT-Thread](https://github.com/kurisaW/Experience-Sharing/tree/main/RT-Thread)
 
 ![image-20220920164423838](https://raw.githubusercontent.com/kurisaW/picbed/main/img/202209201644108.png)
+
+
+
+[四、Document resource]()
+
+* --->[Linux 系列汇总.pdf]()
+* --->[GCC 中文手册.pdf]()
