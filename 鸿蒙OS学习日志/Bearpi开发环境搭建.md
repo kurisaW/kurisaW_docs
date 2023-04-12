@@ -179,3 +179,35 @@ cp -r OHOS_Image.stm32 rootfs_vfat.img userfs_vfat.img /home/bearpi/project/bear
 ![image-20230407192926584](https://raw.githubusercontent.com/kurisaW/picbed/main/img/202304071929824.png)
 
 ## 九、固件烧录
+
+#### 1.准备工作
+
+* [CH340驱动](https://www.wch.cn/downloads/CH341SER_EXE.html)
+* [STM32CubeProgramme(v2.4.0+)](https://www.st.com/en/development-tools/stm32cubeprog.html#get-software)
+
+#### 2.连接开发板
+
+首先将电脑的虚拟机和RailDriver打开，确保SFTP服务能够正常使用。（关于RailDriver配置可以查看这篇文章：[【Linux系统开发】Ubuntu配置SFTP服务](https://kurisaw.github.io/p/linux%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91ubuntu%E9%85%8D%E7%BD%AEsftp%E6%9C%8D%E5%8A%A1/)）
+
+当计算机本地磁盘出现一个SFTP(Y:)的网络盘符出现即代表服务能正常使用。
+
+我们将开发板的usb接口连接到电脑，此时由于虚拟机会识别到设备，我们选择连接到本机
+
+![image-20230411183456029](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304111834424.png)
+
+#### 3.镜像烧录
+
+* 首先将开发板的拨码开关拨至“000”模式，然后再按下Reset键。
+
+* 打开STM32CubeProgramme，选择USB设备和正确的端口后，点击Connect连接小熊派。
+* 点击STM32CubeProgrammer工具的“+”按钮，然后选择烧录配置的tvs文件(路径：`Y:\home\bearpi\project\bearpi-hm_micro_small\applications\BearPi\BearPi-HM_Micro\tools\download_img\flashlayout\bearpi-hm_micro.tsv`)。
+* 点击Browse按钮，然后选择工程源码下的烧录镜像路径
+* 点击下载，等待烧录成功，中间会有一次断开连接，需要再虚拟机界面再次选择将USB设备连接到主机
+
+![image-20230411193521444](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304111935608.png)
+
+#### 4.启动系统
+
+将开发板背面的拨码开关切换至“010”启动模式，并按一下RESET重启开发板，之后等待几秒中会看到屏幕中出现桌面及预装软件，之后就可以结合SSH进行远程终端开发了。
+
+![3](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304111940183.jpg)

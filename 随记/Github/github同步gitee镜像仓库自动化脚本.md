@@ -141,6 +141,49 @@ static_list 默认为'', 配置后，仅同步静态列表，不会再动态获�
 
 ![image-20230411163135259](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304111631352.png)
 
+### 8.定时运行脚本
+
+为了方便该脚本每天定时完成自动同步任务，我们可以使用GitHub提供的schedule事件完成：
+
+修改Sync.yml文件：
+
+```yml
+name: Sync Github Repos To Gitee
+
+on: 
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches: [ main ]
+  delete:
+    branches: [ main ]
+  create:
+    branches: [ main ]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Sync Github Repos To Gitee  # 名字随便起
+      uses: Yikun/hub-mirror-action@master  # 使用Yikun/hub-mirror-action
+      with:
+        src: github/kurisaW  # 源端账户名(github)
+        dst: gitee/kurisaW  # 目的端账户名(gitee)
+        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}  # SSH密钥对中的私钥
+        dst_token:  ${{ secrets.GITEE_TOKEN }}  # Gitee账户的私人令牌
+        account_type: user  # 账户类型
+        clone_style: "https"  # 使用https方式进行clone，也可以使用ssh
+        debug: true  # 启用后会显示所有执行命令
+        force_update: true  # 启用后，强制同步，即强制覆盖目的端仓库
+        static_list: "kurisaW_docs,rt-thread,my_tools,pkgs,Npdf,kurisaW.github.io"  # 静态同步列表，在此填写需要同步的仓库名称，可填写多个
+        timeout: '600s'  # git超时设置，超时后会自动重试git操作
+```
+
+也就是说该自动化脚本会每天零时进行自动化脚本的运行，自动更新镜像仓库，同时如果该配置文件发生推送、删除和创建文件操作时也会触发Action行为。
+
+![image-20230411173142865](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304111731377.png)
+
 ## 总结
 
 通过以上步骤，我们已经完成了GitHub同步Gitee镜像仓库自动化脚本配置的操作。Hub Mirror Action作为GitHub Action中的一个组件，可以帮助我们在两个平台之间实现代码自动同步，极大地减轻了我们手动同步代码的工作量。当然如果你有任何问题环境留言区提出，我将竭力为你解答。
