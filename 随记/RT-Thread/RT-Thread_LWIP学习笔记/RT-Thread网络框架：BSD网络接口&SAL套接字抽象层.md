@@ -1,4 +1,4 @@
-# 基于RTT LWIP TCP聊天客户端的实现
+# RT-Thread网络框架：BSD网络接口&SAL套接字抽象层
 
 ---
 
@@ -64,12 +64,10 @@ SAL（套接字抽象层）是RT-Thread官方为避免系统对单一网络协�
 
 ![image-20230411131524312](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304111315461.png)
 
-* 应用层：提供一套标准BSD Socket API。如socket、connect等函数，用于系统中大部分网络开发应用。
+* 应用层：提供一套标准BSD Socket API[^BSD]。如socket、connect等函数，用于系统中大部分网络开发应用。
 * SAL套接字抽象层：RT-Thread通过该层能够适配下层不同的网络协议栈，并提供给上层统一的网络编程接口，方便不同协议栈的接入。套接字抽象层为上层应用层提供接口有：accept、connect、send、recv等。
 * netdev网卡层：主要作用是解决多网卡情况设备网络连接和网络管理相关问题，通过netdev网卡层，用户可以统一管理各个网卡信息和网络连接状态，并且可以使用统一的网卡调试命令接口。
-* 协议栈层：该层包括几种常用的TCP/IP协议栈，如嵌入式开发中常用的轻型TCP/IP协议栈lwip以及RT-Thread自主研发的AT Socket网络功能实现等。
-
-附：伯克利套接字（Berkeley sockets），也称BSD Socket，伯克利套接字的应用编程接口（API）是采用C语言的进程间通信的库，经常用在计算机网络间的通信。 BSD Socket的应用编程接口已经是网络套接字的**抽象标准**。大多数其他程序语言使用一种相似的编程接口。最初是由加州伯克利大学为Unix系统开发出来。
+* 协议栈层：该层包括几种常用的TCP/IP协议栈，如嵌入式开发中常用的**轻型TCP/IP协议栈lwip**以及RT-Thread自主研发的AT Socket网络功能实现等。
 
 #### 3.工作原理
 
@@ -526,49 +524,11 @@ struct sal_proto_family
 * skt_ops：定义socket相关执行函数，如connect、send、recv等，每种协议簇都有一组通过的实现方式。
 * netdb_ops：定义非socket相关执行函数，如gethostbyname、getaddrinfo、freeaddrinfo等，每种协议簇都有一组不同的实现方式。
 
-## LWIP结构体
-
-#### 1.struct sockaddr_in
-
-```c
-#if NETDEV_IPV4
-/* members are in network byte order */
-struct sockaddr_in
-{
-    uint8_t        sin_len;
-    sa_family_t    sin_family;
-    in_port_t      sin_port;
-    struct in_addr sin_addr;
-#define SIN_ZERO_LEN 8
-    char            sin_zero[SIN_ZERO_LEN];
-};
-#endif /* NETDEV_IPV4 */
-
-#if NETDEV_IPV6
-struct sockaddr_in6
-{
-  uint8_t         sin6_len;      /* length of this structure    */
-  sa_family_t     sin6_family;   /* AF_INET6                    */
-  in_port_t       sin6_port;     /* Transport layer port #      */
-  uint32_t        sin6_flowinfo; /* IPv6 flow information       */
-  struct in6_addr sin6_addr;     /* IPv6 address                */
-  uint32_t        sin6_scope_id; /* Set of interfaces for scope */
-};
-#endif /* NETDEV_IPV6 */
-```
-
-* _len：表示该结构体的长度
-* _family：表示地址簇，通常`AF_INET`表示IPV4地址，`AF_INET6`表示IPV6地址
-* _port：表示端口号
-* _addr：存储地址簇的结构体
-* _zero：预留字段，用0填充
-* sin6_flowinfo：存储IPV6流信息
-* sin6_scope_id：存储一组接口表示符，用于确定IPV6地址的作用域
-
 ---
 
 ## 附录
 
+[^BSD]:伯克利套接字（Berkeley sockets），也称BSD Socket，伯克利套接字的应用编程接口（API）是采用C语言的进程间通信的库，经常用在计算机网络间的通信。 BSD Socket的应用编程接口已经是网络套接字的**抽象标准**。大多数其他程序语言使用一种相似的编程接口。最初是由加州伯克利大学为Unix系统开发出来。
 [^TLS]: 在 TLS 协议中，使用了非对称加密和对称加密两种加密方式。其中，**非对称加密主要用于密钥协商和身份认证，而对称加密则用于数据传输的加密和解密**。在TLS握手过程中，客户端和服务器会相互发送自己的公钥，并通过对方的公钥加密生成一个随机数的方式协商出用来进行对称加密的对称密钥。这个对称密钥就是用非对称加密算法加密后的数据包。接收方拿到这个数据包后，使用自己的私钥进行解密，获取生成的对称密钥。然后，双方就开始使用协商好的对称密钥进行数据传输。接收方会利用对称密钥对收到的数据进行解密，得到明文数据。这样，在整个数据传输过程中，只有公钥被公开，密钥等关键信息都是使用非对称加密算法进行加密传输的，保证了安全性。总之，在 TLS 协议中，接收方通过使用自己的私钥解密协商出的对称密钥，从而完成对加密数据的解析。这个过程是整个 TLS 协议中非常重要的一个环节，确保了加密数据在传输过程中的安全性和可靠性。
-[^WIZnet]:WIZnet的硬件TCP/IP协议栈采用了TOE（TCP/IP Core Offload Engine）技术，将TCP/IP协议栈等网络处理功能转移到专用硬件中，从而减少了CPU的负担，提高了整个系统的性能和稳定性。同时，WIZnet的硬件TCP/IP协议栈还支持多种网络协议，并提供了Socket API封装等高层次接口，方便用户进行开发和集成。
+[^WIZnet]:WIZnet的硬件TCP/IP协议栈采用了TOE（TCP/IP Core Offload Engine）技术，将T**CP/IP协议栈等网络处理功能转移到专用硬件中，从而减少了CPU的负担**，提高了整个系统的性能和稳定性。同时，WIZnet的硬件TCP/IP协议栈还支持多种网络协议，并提供了Socket API封装等高层次接口，方便用户进行开发和集成。
 

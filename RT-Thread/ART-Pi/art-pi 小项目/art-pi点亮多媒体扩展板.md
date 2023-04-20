@@ -2,21 +2,21 @@
 
 硬件勾选“Media-IO”，暂时不选择touch和audio功能，要注意不能选择enable LCD，这个选项是对应于LDTC驱动方式的显示屏的。这个多媒体扩展版上用的是MCU屏，自带驱动的IC的，是SPI通讯口，接在SPI2上，所以勾选了enable spi2
 
-![image-20220611190327682](G:/Typora/user_potograph/image-20220611190327682.png)
+![image-20220611190327682](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201836033.png)
 
-![image-20220611190357594](G:/Typora/user_potograph/image-20220611190357594.png)
+![image-20220611190357594](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201836533.png)
 
 保存退出，等待生成配置。会自动在项目中添加ILI9488的驱动文件。
 
 现在将固件下载进去开发板看看什么效果。
 屏幕白屏，而且终端打印错误信息，这是什么情况？
 
-![image.png](G:/Typora/user_potograph/2f3c3cb44b2e963028b7ac48932cd2ec.png)
+![image.png](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201836838.png)
 
 **添加SPI2初始化代码段**
 查看了一下stm32h7xx_hal_msp.c文件，原来没有针对SPI2的初始化代码段。把下面这个代码段补上去，重新编译下载。
 
-![image-20220611190618355](G:/Typora/user_potograph/image-20220611190618355.png)
+![image-20220611190618355](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201836913.png)
 
 ```c
 else if(hspi->Instance==SPI2)
@@ -50,12 +50,12 @@ else if(hspi->Instance==SPI2)
 ```
 
 在终端输入测试命令，就可以看到显示了
-![image.png](G:/Typora/user_potograph/36e10ace2975e06a771f9c850eddd386.png)
+![image.png](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201836186.png)
 
 **添加触摸功能**
 首先是配置RT-Thread Settings
 
-![image-20220611190730715](G:/Typora/user_potograph/image-20220611190730715.png)
+![image-20220611190730715](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201836582.png)
 
 在软件包ft6236中包含有一个sample的目录，里面有相关的代码，我们可以把代码段拷贝到main.c中，并进行相应的修改
 
@@ -181,7 +181,7 @@ INIT_APP_EXPORT(ft6236_example);
 
 ```
 
-![image-20220611190903758](G:/Typora/user_potograph/image-20220611190903758.png)
+![image-20220611190903758](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201837678.png)
 
 ---
 
@@ -195,18 +195,18 @@ INIT_APP_EXPORT(ft6236_example);
 
 添加littleVGL2RTT软件包
 
-![image-20220611191136148](G:/Typora/user_potograph/image-20220611191136148.png)
+![image-20220611191136148](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201837056.png)
 
 右击littleVGL2RTT软件包，进行如下配置
 
-![image-20220611191325892](G:/Typora/user_potograph/image-20220611191325892.png)
+![image-20220611191325892](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201837636.png)
 
 这里直接把色彩深度设置为32bit，后面在相应的文件中做修改。
 
 主要修改的是littlevgl2rtt.c文件中的lcd_fb_flush函数，该函数负责刷新屏幕显示的内容。
 修改内容如下：
 
-![image-20220611192327809](G:/Typora/user_potograph/image-20220611192327809.png)
+![image-20220611192327809](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201837761.png)
 
 ```c
 else if (info.bits_per_pixel == 24 || info.bits_per_pixel == 32)
@@ -232,7 +232,7 @@ else if (info.bits_per_pixel == 24 || info.bits_per_pixel == 32)
 然后是修改littlevgl2rtt_init函数。
 修改内容如下：
 
-![image-20220611193513612](G:/Typora/user_potograph/image-20220611193513612.png)
+![image-20220611193513612](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201837635.png)
 
 ```c
 //    fbuf = rt_malloc(info.width * 10 * sizeof(*fbuf));
@@ -245,7 +245,7 @@ else if (info.bits_per_pixel == 24 || info.bits_per_pixel == 32)
     }
 ```
 
-![image-20220611193616768](G:/Typora/user_potograph/image-20220611193616768.png)
+![image-20220611193616768](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201837910.png)
 
 ```c
 //    lv_disp_buf_init(&disp_buf, fbuf, NULL, info.width * 10);
@@ -258,7 +258,7 @@ else if (info.bits_per_pixel == 24 || info.bits_per_pixel == 32)
 这是竖屏显示，有没有办法横屏呢，不急不急。接着修改lcd_spi_port.h，内容如下：
 增加了一个关于横屏还是纵屏的宏定义
 
-![image-20220611194250538](G:/Typora/user_potograph/image-20220611194250538.png)
+![image-20220611194250538](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201837735.png)
 
 ```c
 #define LC_HOR_SCREEN //定义屏幕是横屏还是纵屏，注意LCD的驱动要做相应的修改，touch也要做相应的修改
@@ -275,18 +275,18 @@ else if (info.bits_per_pixel == 24 || info.bits_per_pixel == 32)
 
 接下来在LCD初始化代码中也要做相应的修改，修改drv_spi_ili9488.c文件，内容如下：
 
-![image-20220611194453135](G:/Typora/user_potograph/image-20220611194453135.png)
+![image-20220611194453135](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201837844.png)
 
 下面来看看怎么把触摸也搞起来。前面已经调通触摸驱动了，用的是ft6236的软件包。跑了里面一个sample，确实是可以从终端打印触摸信息的。
 
 只要在触摸动作处理里面加入这个函数就可以了。
 我修改了sample，如下：
 
-![image-20220611195959787](G:/Typora/user_potograph/image-20220611195959787.png)
+![image-20220611195959787](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304201837358.png)
 
 ```c
 #ifdef LCD_HOR_SCREEN
-        littlevgl2rtt_send_input_event(read_data->y_coordinate, read_data->x_coordinate?(LCD_HEIGHT - read_data ->x_coordinate):0,read_data->event);
+        littlevgl2rtt_send_input_event(read_data->y_coordinate, read_data->x_coordinate?(LCD_HEIGHT - read_data ->x_coordinate):0,read_	data->event);
         #else
         littlevgl2rtt_send_input_event(read_data->x_coordinate, read_data->y_coordinate, RT_TOUCH_EVENT_NONE);
         #endif
