@@ -33,7 +33,7 @@ uboot`内核`配置
 
 `make x210ii_qt_defconfig`
 
-![image-20220428101602414](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220428101602414.png)
+![image-20220428101602414](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241402158.png)
 
 `make menuconfig`
 
@@ -57,7 +57,7 @@ Busybox Settings --->
 		(./)BusyBox installation prefix) //这里设置安装路径
 ```
 
-![image-20220428103501462](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220428103501462.png)
+![image-20220428103501462](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241402613.png)
 
 7.根文件系统配置
 

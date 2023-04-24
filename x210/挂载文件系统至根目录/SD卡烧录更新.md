@@ -16,7 +16,7 @@ make x210_sd_config
 
 返回uboot/，执行make,可以看到u-boot.bin文件，进入sd_fusing/,执行vi sd_fusing.sh在下面改成u-boot.bin
 
-![image-20220503195615800](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220503195615800.png)
+![image-20220503195615800](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241402073.png)
 
 
 

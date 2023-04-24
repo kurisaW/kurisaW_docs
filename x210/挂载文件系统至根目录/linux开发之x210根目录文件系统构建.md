@@ -33,14 +33,14 @@ rootfs的两种表现形式：
 #### 2.x210_bsp配置
 首先进入到该目录下，并将文件qt_x210v3s_160307.tar.bz2复制到该目录下解压
 
-![image-20220424191955391](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220424191955391.png)
+![image-20220424191955391](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241402884.png)
 
 以上是解压qt_x210v3s_160307.tar.bz2内的文件内容，后面会说到这个目录如何使用
 
 #### 3.rootfs配置
 首先我们需要在该目录下继续创建一个名为x210_rootfs的文件夹，并且进入到该文件夹下，将我们上面提到的busybox文件复制到此目录下并解压
 
-![image-20220424192946522](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220424192946522.png)
+![image-20220424192946522](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241402655.png)
 
 以上是解压busybox-1.24.1（这是我选择的busybox版本）的全部文件
 
@@ -55,7 +55,7 @@ rootfs的两种表现形式：
 	Networking options --->
 ```
 
-![image-20220425140417431](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220425140417431.png)
+![image-20220425140417431](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241402487.png)
 
 
 
@@ -68,7 +68,7 @@ File systems --->
 
 有需要把开发板作为服务器端的也可以选择把`NFS server support`设置打开，这里我们仅实验客户端
 
-![image-20220425140642149](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220425140642149.png)
+![image-20220425140642149](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241403120.png)
 
 
 
@@ -98,7 +98,7 @@ File systems --->
 `注意：此处的交叉编译链需要对照自己电脑的交叉编译链`
 191行：`ARCH=arm`
 
-![image-20220424193701866](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220424193701866.png)
+![image-20220424193701866](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241403440.png)
 
 （2）make menuconfig配置
 
@@ -158,9 +158,9 @@ make -j4编译可能遇到的问题：
 最后再make -j4编译一下即可
 
 
-![image-20220424200553770](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220424200553770.png)
+![image-20220424200553770](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241403773.png)
 
-![image-20220424200859615](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220424200859615.png)
+![image-20220424200859615](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241403140.png)
 
 其实还可以选择在源代码中解决这个问题，过程有些繁琐就不赘述，动手能力强的可以一试。
 
@@ -168,11 +168,11 @@ make -j4编译可能遇到的问题：
 * 默认安装位置：./_install
 * 文件包含有：bin linuxrc sbin usr
 
-![image-20220424201610898](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220424201610898.png)
+![image-20220424201610898](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241403406.png)
 
 <strong>ls -l可以看到： linuxrc -> bin/busybox  //这个linuxrc其实就是个符号链接 </strong>
 
-![image-20220424201955345](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220424201955345.png)
+![image-20220424201955345](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241403756.png)
 
 <strong>这里也不难发现，bin下的所有的符号链接都指向了busybox</strong>
 
@@ -211,11 +211,11 @@ make menuconfig 
 
 * `"文件挂载目录"  *(rw,sync,no_root_squash,no_subtree_check)`
 
-![image-20220424205123500](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220424205123500.png)
+![image-20220424205123500](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241403847.png)
 
 * 保存退出后，输入`mount -t nfs -o nolock 192.168.240.33:/root/rootfs/x210_rootfs`(根据实际情况修改)
 
-![image-20220424210014124](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220424210014124.png)
+![image-20220424210014124](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241403555.png)
 
 * 输入命令`/etc/init.d/nfs-kernel-server restart`重启NFS服务
 
@@ -242,11 +242,11 @@ etc目录下载：
 * id：标识符，即代表记录的名字
 * runlevels（可不填）：用于指定该记录在哪些运行级别中运行，runlevel可以设定为单个运行级别，也可以设定多个运行级别
 
-![image-20220425001232833](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220425001232833.png)
+![image-20220425001232833](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241403809.png)
 
 * action：用于描述该级别该执行什么操作（部分说明）
 
-![image-20220425001029160](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220425001029160.png)
+![image-20220425001029160](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241403469.png)
 
 * process：具体执行的命令
 
@@ -300,7 +300,7 @@ mount -a
 
 > linux操作系统自从开始启动至启动完毕需要经历几个不同的阶段，这几个阶段就叫做runlevel。例如init 0就是关机，init 6 就是重启
 
-![image-20220425002731946](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220425002731946.png)
+![image-20220425002731946](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241403009.png)
 
 * umask=
 
@@ -380,7 +380,7 @@ cp lib/*so* /root/rootfs/x210_rootfs/lib/ -rdf
 
 #### 3.解释:
 
-![image-20220425150412819](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220425150412819.png)
+![image-20220425150412819](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241403754.png)
 
 这时候执行命令./a.out发现可以正常打印
 
@@ -398,7 +398,7 @@ cp lib/*so* /root/rootfs/x210_rootfs/lib/ -rdf
 
 前面我们已经提前配置好，此处不再赘述
 
-![image-20220425152053416](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220425152053416.png)
+![image-20220425152053416](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241403568.png)
 
 #### 2.ext2镜像制作
 
