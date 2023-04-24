@@ -14,7 +14,7 @@
 1.2 安装QT4.8源码包
 将光盘中的QT4.8源码包qt_x210v3_130712.tar.bz2拷贝到ubuntu的用户目录并解压： cp qt_x210v3_130712.tar.bz2 ~ tar xvf qt_x210v3_130712.tar.bz2，解压内容如下图所示：
 
-![image-20220418122458413](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220418122458413.png)
+![image-20220418122458413](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241429896.png)
 
 
 
@@ -31,7 +31,7 @@
 
 这时，在uboot目录将会生成我们需要的映像uboot_inand.bin，同样也会将映像拷贝到release目录。
 
-![image-20220418123019904](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220418123019904.png)
+![image-20220418123019904](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241429340.png)
 
 1.4 编译内核
 执行如下指令编译内核： 
@@ -42,7 +42,7 @@
 
 注意，这时release目录还会生成一个zImage-initrd的映像，它主要用于xboot升级映像，使用uboot时一定要烧写zImage-qt这个映像。
 
-![image-20220418123330490](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220418123330490.png)
+![image-20220418123330490](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241429505.png)
 
 1.5 编译xboot
 我们精心编写了一套自主研发的bootloader，无论在代码管理，还是固件升级，批量生产，以及代码调试方面，相对uboot都有很强的优势。xboot最终生成的映像有十几M，甚至更大，而uboot只有几百K大小，这是因为xboot它本身已经将前面的zImage-qt和zImage-initrd都打包到xboot中了，甚至还可以将WINCE的eboot也打包到xboot中。详细原理，可认真琢磨xboot源码。也正因为xboot的这种机制，因此务必先编译内核，再编译xboot。而且，用户在更新内核驱动后，如果使用xboot机制，需将新的内核映像打包到xboot，再更新xboot到开发板。

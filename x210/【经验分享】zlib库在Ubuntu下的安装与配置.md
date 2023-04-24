@@ -12,6 +12,7 @@
 ```
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/b7e38d4071714e4d86feb58f6e1422c8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Lul5pS-Xw==,size_20,color_FFFFFF,t_70,g_se,x_16)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/4a3da23c07624f75acab1d0a1a81d31a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Lul5pS-Xw==,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 ## 三、回到上一级，进入libpng-1.6.6目录下
 输入命令：
 
@@ -19,6 +20,7 @@
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/36b1e2cc4bdb42019d127e711fcd7ca7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Lul5pS-Xw==,size_20,color_FFFFFF,t_70,g_se,x_16)
 再次执行：
+
 ```
 make
 make install

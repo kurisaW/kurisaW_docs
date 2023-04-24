@@ -9,13 +9,17 @@
 * [zlib库配置教学](https://blog.csdn.net/qq_56914146/article/details/124211318)
 
 1.首先在根目录下创建一个名为`decodeporting`的文件夹，需要下载好上面的源码包，并将源码包复制到该文件夹下
-![在这里插入图片描述](https://img-blog.csdnimg.cn/0b75cdf564934e08899b446a996a9889.png)
+
+![image-20230424143425509](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241434573.png)
+
 执行解压
+
 ```
 tar ‐zxvf libpng‐1.6.6.tar.gz
 ```
 2.进入`libpng-1.6.6`文件夹,将下载好的zlib库压缩包复制到decodeporting文件下
-![在这里插入图片描述](https://img-blog.csdnimg.cn/8ae78cdb7b054079be1bf0144fe97b26.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5Lul5pS-Xw==,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+![image-20230424143445525](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241434634.png)
 
 
 3.进入libpng-1.6.6目录下，运行
@@ -29,6 +33,7 @@ make install
 ```
 
 ## 三、参考源码包的内部资料(在libpng-1.6.6文件夹中)
+
 1.readme
 2.libpng-manual.txt
 3.example.c 和 pngtest.c

@@ -1,6 +1,6 @@
 secureCRT启动开发板，在
 
-![image-20220428105405507](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220428105405507.png)
+![image-20220428105405507](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241435376.png)
 
 c语言是面向过程的，但是Linux是面向对象的，如何在面向对象中表示C语言，需要用到`函数指针`
 
@@ -18,7 +18,7 @@ cd /lib/modules/3.13.0-32-generic/build
 
 
 
-![image-20220428113738058](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220428113738058.png)
+![image-20220428113738058](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241435551.png)
 
 在共享文件夹下创建一个driver文件夹，里面创建以下两个文件：
 
@@ -67,13 +67,13 @@ clean:
 
 会发现文件夹下原本的两个文件另外还多出了其他文件：
 
-![image-20220429115319449](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220429115319449.png)
+![image-20220429115319449](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241435467.png)
 
 > 查看模型信息：
 > `modinfo module_test.ko`
 >`lsmod`   //查看Linux系统中装载的所有模型
 
-![image-20220429120237032](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220429120237032.png)
+![image-20220429120237032](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241435621.png)
 
 > 安装module_test.ko这个模块
 > 执行`insmod module_test.ko`
@@ -127,11 +127,11 @@ int main(void)
 
 make menuconfig
 
-![image-20220507205438583](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220507205438583.png)
+![image-20220507205438583](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241435814.png)
 
-![image-20220507205504546](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220507205504546.png)
+![image-20220507205504546](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241435942.png)
 
-![image-20220507204734661](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220507204734661.png)
+![image-20220507204734661](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241435667.png)
 
 make -j4 
 
@@ -141,9 +141,9 @@ make -j4
 
 ls /sys/devices/platform/
 
-![image-20220507205918814](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220507205918814.png)
+![image-20220507205918814](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241435835.png)
 
-![image-20220507210713105](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220507210713105.png)
+![image-20220507210713105](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241435298.png)
 
 cd sys/class/leds
 
@@ -161,7 +161,7 @@ vi Makefile->
 
 `obj-$(CONFIG_LEDS_S5PV210)              += leds-s5pv210.o`
 
-![image-20220507224506063](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220507224506063.png)
+![image-20220507224506063](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241435722.png)
 
 
 
@@ -175,7 +175,7 @@ vi Kconfig更改依赖（添加以下文件）
 
 
 
-![image-20220507225048305](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220507225048305.png)
+![image-20220507225048305](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241435670.png)
 
 
 
@@ -187,7 +187,7 @@ vi Kconfig更改依赖（添加以下文件）
 
 可以发现生成了新的配置（Device Drivers-> LED_Support），使能这个
 
-![image-20220507225324648](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220507225324648.png)
+![image-20220507225324648](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241435647.png)
 
 执行make编译
 

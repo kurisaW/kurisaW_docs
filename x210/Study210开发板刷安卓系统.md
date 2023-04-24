@@ -4,7 +4,7 @@
 
 > 1.用USB转串口线连接电脑与开发板，打开SecureCRT串口监视软件（此步骤注意：开发板上使用UART2）.
 
-![image-20220415200533530](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220415200533530.png)
+![image-20220415200533530](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241432727.png)
 
 > 2.长按开发板POWER按键开机，进入控制台。(让secureCRT读完全部信息)
 >
@@ -25,7 +25,7 @@
 
 > 1.将SD卡插入到电脑的SD卡槽，使用SD卡烧录工具x210_Fusing_Tool 进行烧录。
 
-![image-20220415202442316](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220415202442316.png)
+![image-20220415202442316](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241432844.png)
 `注意：这里由于之前没有保存截图，插卡后，此软件会自动识别，然后在自己的电脑里选择一个uboot.bin文件。然后点击START.`
 
 > 2.完成后将SD卡插入开发板的SD卡槽。然后开机就可以进入uboot界面了。在uboot开机自动启动倒数3秒之内迅速按下电脑回车键，打断自动启动。（否则会自动启动iNand中的android）
@@ -34,18 +34,18 @@
 
 > 2.然后将电脑内的fastboot压缩包解压到一个容易找到的文件目录下，如 D盘。打开windows控制台进入到相应目录下。
 
-![image-20220415202849623](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220415202849623.png)
+![image-20220415202849623](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241432819.png)
 
 > 3.下一步 在fastboot文件夹下，新建一个文件夹存放要烧录的文件，如Android
 > Android中应该包含的文件（由于这里我烧写的是安卓系统）
 
-![image-20220415203108592](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220415203108592.png)
+![image-20220415203108592](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241432490.png)
 
 
 
 > 4.进行内核和系统的烧写 ，具体代码如下：
 
-![image-20220415203639928](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220415203639928.png)
+![image-20220415203639928](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241432878.png)
 
 > 同时在SecureCRT下可以看到下载结果
 
@@ -57,7 +57,7 @@
 
 - 准备事项：已安装好相应的驱动、串口线（连接的是UART2）和USB已经接好，dnw已打开。
 
-![image-20220415204109660](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220415204109660.png)
+![image-20220415204109660](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241432673.png)
 
 注意：
 
@@ -69,17 +69,17 @@
 
 > 1.将拨码开关拨到USB启动位置。
 
-![image-20220415205448252](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220415205448252.png)
+![image-20220415205448252](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241432861.png)
 
 > 2.按住开机键(长按不放)，DNW 配置下载地址为0xd0020010 ，然后transmit x210_usb.bin
 
-![image-20220415205750621](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220415205750621.png)
+![image-20220415205750621](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241432906.png)
 
-![image-20220415205902526](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220415205902526.png)
+![image-20220415205902526](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241433067.png)
 
 
 
-![image-20220415210139477](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220415210139477.png)
+![image-20220415210139477](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241433902.png)
 
 > 3.DNW 修改下载地址为 0x23e00000 ，下载uboot.bin,注意下载的同时要看SecureCRT界面，[串口](https://so.csdn.net/so/search?q=串口&spm=1001.2101.3001.7020)终端有信息打印出来，在3s倒计时内按下回车键，进入shell界面。
 
@@ -91,7 +91,7 @@
 ```
 > 5.cmd打开系统终端，切换到fastboot目录分别执行下列红框的命令：
 
-![image-20220415203639928](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20220415203639928.png)
+![image-20220415203639928](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241433934.png)
 
 全部执行完成后，将拨码开关切换回原来的状态，重新启动，此次刷机完成。
 

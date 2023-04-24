@@ -1,12 +1,12 @@
 EST + / :跳转到指定代码
 
-![image-20220508211313572](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220508211313572.png)
+![image-20220508211313572](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241424321.png)
 
 
 
 EST+:+N  （跳转到指定行）
 
-![image-20220508233344494](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20220508233344494.png)
+![image-20220508233344494](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202304241424756.png)
 
 
 
@@ -31,8 +31,6 @@ Qt5.3.2安装路径：/opt/Qt5.3.2
 进入Qt5.3.2创建工程
 
 `root@ubuntu:/opt/Qt5.3.2/Tools/QtCreator/bin# ./qtcreator`
-
-
 
 
 
