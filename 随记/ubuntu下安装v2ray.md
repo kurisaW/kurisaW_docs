@@ -84,3 +84,23 @@ sudo systemctl enable v2raya.service
 至此所有的配置就完成了，我们打开 youtube 测试一下，没有问题，可以进行开发了
 
 ![image-20230504111116983](https://raw.githubusercontent.com/kurisaW/picbed/main/img2023/202305041111183.png)
+
+## 常用命令
+
+```c
+# 开机自启
+systemctl enable v2raya
+
+# 取消自启
+systemctl disable v2raya
+
+# 启动服务
+systemctl start v2raya
+
+# 停止服务
+systemctl stop v2raya
+
+# 重启服务
+systemctl restart v2raya
+```
+

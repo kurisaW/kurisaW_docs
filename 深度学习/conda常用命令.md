@@ -43,5 +43,15 @@ conda config --remove channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkg
 ​
 # conda 升级默认包
 conda update -n base -c defaults conda
+
+# conda搜索软件包可用历史版本
+conda search pack
+```
+
+```c
+# 在不使用root身份绕过特权
+command --allow-root
+
+eg：sudo jupyter notebook --allow-root
 ```
 
