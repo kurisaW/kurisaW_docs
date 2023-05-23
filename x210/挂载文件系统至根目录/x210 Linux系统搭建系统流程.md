@@ -1,8 +1,6 @@
 第一步:制作uboot镜像
 (1)更改Makefile，架构选择arm，交叉编译.工具链
-(2)配置，make x210_ sd_ config第一-步:制作uboot镜像
-(1)更改Makefile，架构选择arm，交叉编译工具链;
-(2)配置，make x210_ sd_ config;
+(2)配置，make x210_ sd_ config
 (3)编译make -j4
 (4)进入烧录的文件夹，修改sd_ fusing.sh文件， 查看mkbl1的属性信息
 ./sd_ fusing.sh /dev/ sdb
